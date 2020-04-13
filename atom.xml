@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://duowb.github.io/blog/</id>
-    <title>Gridea</title>
-    <updated>2020-04-13T12:39:33.903Z</updated>
+    <title>小多</title>
+    <updated>2020-04-13T12:47:39.879Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://duowb.github.io/blog/"/>
     <link rel="self" href="https://duowb.github.io/blog/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>给岁月以文明，而不是给文明以岁月</subtitle>
     <logo>https://duowb.github.io/blog/images/avatar.png</logo>
     <icon>https://duowb.github.io/blog/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, 小多</rights>
     <entry>
         <title type="html"><![CDATA[在Linux中安装Jenkins]]></title>
         <id>https://duowb.github.io/blog/post/jenkins/</id>
