@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://duowb.github.io/blog/</id>
     <title>Gridea</title>
-    <updated>2020-04-13T11:11:47.481Z</updated>
+    <updated>2020-04-13T12:39:06.425Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://duowb.github.io/blog/"/>
     <link rel="self" href="https://duowb.github.io/blog/atom.xml"/>
@@ -10,6 +10,72 @@
     <logo>https://duowb.github.io/blog/images/avatar.png</logo>
     <icon>https://duowb.github.io/blog/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[在Linux中安装Jenkins]]></title>
+        <id>https://duowb.github.io/blog/post/jenkins/</id>
+        <link href="https://duowb.github.io/blog/post/jenkins/">
+        </link>
+        <updated>2020-04-13T11:47:53.000Z</updated>
+        <summary type="html"><![CDATA[<p>因为Jenkins是用Java开发的，所以安装Jenkins之前需要先安装JDK（这里建议最好安装JDK1.8+）；</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>因为Jenkins是用Java开发的，所以安装Jenkins之前需要先安装JDK（这里建议最好安装JDK1.8+）；</p>
+<!-- more -->
+<p>回到正题：<br>
+有两种方法安装，具体可以查看<a href="http://pkg.jenkins-ci.org/redhat/">官方文档</a><br>
+方法一：<br>
+<code>sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo</code><br>
+<code>sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key</code><br>
+<code>yum install Jenkins</code></p>
+<!-- more -->
+<p>方法二：<br>
+直接下载rpm安装，在官方文档里面下载想要的rpm版本<br>
+注: wget 加上相应的地址(前提需要先安装好wget)<br>
+比如，我想下载“jenkins-2.209-1.1.noarch.rpm”这个版本的rpm，鼠标放在改rpm上面，右键“复制链接地址”，然后在linux 里面输入：<br>
+<code>wget http://pkg.jenkins-ci.org/redhat/jenkins-2.209-1.1.noarch.rpm</code><br>
+安装rpm文件<br>
+<code>rpm -ivh jenkins-2.209-1.1.noarch.rpm</code></p>
+<!-- more -->
+<p>安装完成后<br>
+/usr/lib/jenkins/jenkins.war    WAR包<br>
+/etc/sysconfig/jenkins       配置文件<br>
+/var/lib/jenkins/       默认的JENKINS_HOME目录<br>
+/var/log/jenkins/jenkins.log    Jenkins日志文件</p>
+<!-- more -->
+<p>Jnekins项目默认的端口是8080，如果需要修改：<br>
+<code>vim /etc/sysconfig/jenkins</code><br>
+<code>JENKINS_PORT=&quot;8080&quot;</code></p>
+<!-- more -->
+<p>配置权限：<br>
+为了不出现权限问题，我们直接把jenkins的权限设置成root<br>
+<code>vim /etc/sysconfig/jenkins</code><br>
+<code>JENKINS_USER=&quot;root&quot;</code><br>
+修改目录用户权限<br>
+chown -R root:root /var/lib/jenkins<br>
+chown -R root:root /var/cache/jenkins<br>
+chown -R root:root /var/log/jenkins</p>
+<p>注：service  和 systemctl  都可以<br>
+启动Jnekins<br>
+<code>service jenkins start</code><br>
+重启Jenkins<br>
+<code>service Jenkins restart</code><br>
+在Jenkins地址后面加上/restart/   列如：http://192.168.1.19:8080/restart/<br>
+** 因为我这里没有修改jenkins的端口，所以是8080 **</p>
+<p>在本地浏览器中输入“http://IP:8080”登录jenkins，登录Jenkins 会要求解锁：<br>
+默认密码保存在： /var/lib/jenkins/secrets/ initialAdminPassword<br>
+查看密码：<code>cat /var/lib/jenkins/secrets/initialAdminPassword</code></p>
+<p>然后选择插件，使用推荐插件的就行了<br>
+接着就会让你，注册用户，在页面的右下角，会有一个使用admin账户，我们就使用这个就行了<br>
+<strong>注意admin账号的密码就保存在/var/lib/jenkins/secrets/initialAdminPassword 文件中</strong></p>
+<p>如果启动报错：<br>
+Starting jenkins (via systemctl):  Job for jenkins.service failed because the control process exited with error code. See &quot;systemctl status jenkins.service&quot; and &quot;journalctl -xe&quot; for details.   [FAILED]<br>
+是因为 Jenkins 的配置文件中 jdk 位置有问题 ，解决办法：<br>
+查看当前Java的环境变量<br>
+<code>echo $JAVA_HOME</code><br>
+复制Java的环境变量地址, 编辑/etc/init.d/jenkins文件, 在指定位置添加该地址, 后缀附上/bin/java<br>
+<code>vim /etc/init.d/jenkins</code><br>
+<img src="https://duowb.github.io/blog//post-images/1586780461289.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://duowb.github.io/blog/post/hello-gridea/</id>
